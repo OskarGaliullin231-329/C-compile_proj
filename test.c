@@ -1,32 +1,32 @@
 #include <stdio.h>
 
 void some_function() {
-    printf("some_function was called.\n");
+  printf("some_function was called.\n");
 }
 
 struct SomeStruct {
-    int id;
+  int id;
 };
 
 // entry point of the program
 int main() {
-    /* 
-    let's declare some variables
-    */
-    int a=2;
-    float b=3.14;
-    float result;
+  /*
+  let's declare some variables
+  */
+  int a=2;
+  float b=3.14;
+  float result;
 
-    result = a + b; // and let's see summation result
-    
-    printf("%d", result==a+b);
+  result = a + b; // and let's see summation result
 
-    for (int i = 0; i < 10; i++) {
-        some_function();
-    }
+  printf("%d", result==a+b);
 
-    SomeStruct s_s;
-    s_s.id = 0;
+  for (int i = 0; i < 10; i++) {
+    some_function();
+  }
 
-    return 0;
+  struct SomeStruct s_s;
+  s_s.id = 0;
+
+  return 0;
 }
