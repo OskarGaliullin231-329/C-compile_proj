@@ -1,37 +1,34 @@
 #ifndef PREPROC_HPP_
 #define PREPROC_HPP_
 
-#include <fstream>
-#include <memory>
+#include <string>
 
-// #include "StrIter.hpp"
 #include "../../Logger/include/StdLogger.hpp"
 
 class Preproc final {
 public:
-  Preproc() {}
+  using Logger = Logger<StdLogger>;
+
+  Preproc(): _state(State::ReadLine), _curr_line(0) {}
   Preproc(const Preproc&) = delete;
   Preproc(Preproc&&) = delete;
 
 public:
-  bool process(std::ifstream&);
+  bool process(const std::string&);
   std::string result() { return _text; }
 
-#if DEBUG
-public:
-#else
 private:
-#endif
-  void readSingleLineComm(const std::string_view&, std::string_view&);
-  bool readMultiLineComm(const std::string_view&, std::string_view&);
-  bool readComm(const std::string_view&, std::string_view&);
-  bool readDirec(const std::string_view&, std::string_view&);
-  bool removeComments(const std::string&);
-  bool execDirectives(const std::string&);
+  enum class State :int8_t { ReadLine, ReadMultiLineComm };
+
+  void removeCommFromLine(std::string_view&);
+  bool noClosingCommSeq(const std::string_view&);
+  bool dirIsCorrect(const std::string_view&);
   bool processLine(const std::string&, std::string_view&);
 
 private:
   std::string _text;
+  size_t _curr_line;
+  State _state;
 };
 
 #endif // PREPROC_HPP_
