@@ -17,7 +17,11 @@ public:
   bool process(const std::string&);
   std::string result() { return _text; }
 
+#if DEBUG
+public:
+#else
 private:
+#endif
   enum class State :int8_t { ReadLine, ReadMultiLineComm };
 
   void removeCommFromLine(std::string_view&);
@@ -25,7 +29,9 @@ private:
   bool dirIsCorrect(const std::string_view&);
   bool processLine(const std::string&, std::string_view&);
 
+#if !DEBUG
 private:
+#endif
   std::string _text;
   size_t _curr_line;
   State _state;
