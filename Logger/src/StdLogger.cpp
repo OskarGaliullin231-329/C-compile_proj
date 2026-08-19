@@ -12,7 +12,7 @@ void StdLogger::removeEvents() {
 
 void StdLogger::loadEvents() {
   for (const auto& event : _events) {
-    std::cout << "in '" << _f_name << "' at line" << event.getLine() << ":\n";
+    std::cout << "Error occured in file '" << _f_name << "' at line " << event.getLine() << ":\n";
     std::cout << event.getComm() << '\n';
   }
 }

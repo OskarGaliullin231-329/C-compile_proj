@@ -1,7 +1,7 @@
 #ifndef LOGGER_HPP_
 #define LOGGER_HPP_
 
-#include <memory>
+#include <list>
 #include <string>
 
 #include "Event.hpp"
@@ -9,11 +9,9 @@
 template <class Type>
 class Logger {
 public:
-  // class Event;
-
-  std::shared_ptr<Logger<Type>> getInstance() {
+  static Logger<Type>& getInstance() {
     static Logger<Type> instance;
-    return std::make_shared<Logger<Type>>(instance);
+    return instance;
   }
 
   void configure(const std::string& f_name) { _f_name = f_name; }
@@ -31,10 +29,14 @@ public:
   }
 
 protected:
-  Logger() {}
+  Logger() = default;
+  Logger(const Logger<Type>&) = delete;
+
+  void operator=(const Logger<Type>&) = delete;
 
 protected:
   std::string _f_name;
+  std::list<Event> _events;
 };
 
 #endif // LOGGER_HPP_

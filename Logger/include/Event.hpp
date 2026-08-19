@@ -6,8 +6,8 @@
 class Event {
 public:
   Event(size_t line, const std::string& comm): _line(line), _comm(comm) {}
-  Event(const Event&) = delete;
-  Event(Event&&) = delete;
+  // Event(const Event&) = delete;
+  // Event(Event&&) = delete;
 
 public:
   size_t getLine() const { return _line; }
