@@ -5,8 +5,8 @@
 
 /*
  * This class' goal is to provide interface that lets users to know
- * which line they are on based on character index.
- * Wanted to carry thar logic away from parts of translator such as
+ * which line they are on based on iterator.
+ * Wanted to carry that logic away from parts of translator such as
  * Lexer, Parser and SemanticAnalizer.
  */
 
