@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#  define VAR 1
+#   if VAR
 void some_function() {
   printf("some_function was called.\n");
 }
@@ -30,3 +31,6 @@ int main() {
 
   return 0;
 }
+#else
+# error "VAR is not defined"
+#endif
