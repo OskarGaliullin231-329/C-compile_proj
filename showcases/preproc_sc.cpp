@@ -4,6 +4,10 @@
 #include "../Logger/include/StdLogger.hpp"
 #include "../Preproc/include/Preproc.hpp"
 
+// use
+// "clang++ CmdArgParser/src/CmdArgParser.cpp Logger/src/StdLogger.cpp Preproc/src/Preproc.cpp showcases/preproc_sc.cpp -o ./bin/preproc"
+// to compile this file into binary executable
+
 int main(int argc, char** argv) {
   CmdArgParser arg_parser;
   if (arg_parser.parse(argc, argv)) {
