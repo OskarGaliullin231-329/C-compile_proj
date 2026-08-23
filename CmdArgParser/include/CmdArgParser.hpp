@@ -13,29 +13,27 @@
 class CmdArgParser {
 public:
   bool parse(int16_t, char**);
-  int16_t getAsInt(const std::string& name) {
-    return _values[name]._int_val;
-  }
-  bool getAsBool(const std::string& name) {
-    return _values[name]._bool_val;
-  }
+  std::string_view getValue(const std::string&);
 #if DEBUG
   void print() {
     for (const auto& pair : _values) {
       std::cout << "name: " << pair.first << '\n';
-      std::cout << "value: " << pair.second._int_val << '\n';
+
+      std::cout << "value: " << pair.second << '\n';
     }
   }
 #endif
 
+#if DEBUG
+public:
+#else
 private:
-  union ArgValue {
-    int16_t _int_val;
-    bool _bool_val;
-  };
+#endif
+  std::string_view getNameFromString(std::string_view);
+  std::string_view getValueFromString(std::string_view);
 
 private:
-  std::map<std::string_view, ArgValue> _values;
+  std::map<std::string_view, std::string_view> _values;
 };
 
 #endif // CMDARGPARSER_HPP_
