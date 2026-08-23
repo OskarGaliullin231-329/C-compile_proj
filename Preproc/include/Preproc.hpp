@@ -15,6 +15,7 @@ public:
 
 public:
   bool process(const std::string&);
+  bool process(const std::string_view&);
   std::string_view result() { return _text; }
 
 #if DEBUG

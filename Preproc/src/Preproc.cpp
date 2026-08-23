@@ -109,7 +109,6 @@ bool Preproc::processLine(const std::string& line, std::string_view& clear_line)
 
 bool Preproc::process(const std::string& file_name) {
   std::fstream file(file_name);
-
   bool result = true;
   std::string_view clear_line;
   for (std::string line; std::getline(file, line) && result; _curr_line++) {
@@ -123,4 +122,9 @@ bool Preproc::process(const std::string& file_name) {
   }
   result = result && (_state == State::ReadLine);
   return result;
+}
+
+bool Preproc::process(const std::string_view& file_name) {
+  std::string file_name_str(file_name);
+  return process(file_name_str);
 }
