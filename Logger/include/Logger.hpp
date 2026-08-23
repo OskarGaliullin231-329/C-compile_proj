@@ -14,7 +14,7 @@ public:
     return instance;
   }
 
-  void configure(const std::string& f_name) { _f_name = f_name; }
+  void configure(const std::string_view& f_name) { _f_name = f_name; }
 
   void addEvent(const Event& event) {
     static_cast<Type*>(this)->addEvent(event);
@@ -35,7 +35,7 @@ protected:
   void operator=(const Logger<Type>&) = delete;
 
 protected:
-  std::string _f_name;
+  std::string_view _f_name;
   std::list<Event> _events;
 };
 
