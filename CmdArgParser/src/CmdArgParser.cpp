@@ -1,6 +1,6 @@
 #include "../include/CmdArgParser.hpp"
 
-#include "../../char_utils/char_utils.hpp"
+#include "../../char_utils.hpp"
 
 std::string_view CmdArgParser::getValue(const std::string& name) {
   return _values[name];
