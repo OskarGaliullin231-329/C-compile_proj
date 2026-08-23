@@ -12,6 +12,7 @@ int main(int argc, char** argv) {
       std::cout << "--- Filename is not proveided.\n";
     } else {
       Preproc prep;
+      Logger<StdLogger>::getInstance().configure(file_name);
       if (prep.process(file_name)) {
         std::cout << "--- Preprocessing went fine!\n";
         std::cout << prep.result() << '\n';
