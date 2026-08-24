@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-enum class charTypes : uint8_t {
+enum class CharTypes : uint8_t {
   WORD,
   DIGIT,
   OPER,
@@ -13,7 +13,7 @@ enum class charTypes : uint8_t {
   ERR
 };
 
-charTypes type(char c) {
+CharTypes type(char c) {
   switch (c) {
     case 'a': case 'b': case 'c': case 'd': case 'e': case 'f': case 'g': case 'h': case 'i': case 'j':
     case 'k': case 'l': case 'm': case 'n': case 'o': case 'p': case 'q': case 'r': case 's': case 't':
@@ -22,31 +22,31 @@ charTypes type(char c) {
     case 'K': case 'L': case 'M': case 'N': case 'O': case 'P': case 'Q': case 'R': case 'S': case 'T':
     case 'U': case 'V': case 'W': case 'X': case 'Y': case 'Z':
     case '_': case '$': {
-      return charTypes::WORD;
+      return CharTypes::WORD;
     }
     case '0': case '1': case '2': case '3': case '4':
     case '5': case '6': case '7': case '8': case '9': {
-      return charTypes::DIGIT;
+      return CharTypes::DIGIT;
     }
     case '+': case '-': case '*': case '/': case '%':
     case '|': case '&': case '~': case '^': case '!':
     case '<': case '>': case '=':
     case '?': case ':':
     case '.': {
-      return charTypes::OPER;
+      return CharTypes::OPER;
     }
     case '{': case '}': case '(': case ')':
     case ',': case ';':{
-      return charTypes::PUNC;
+      return CharTypes::PUNC;
     }
     case '"': case '\'': {
-      return charTypes::QUOT;
+      return CharTypes::QUOT;
     }
     case ' ': case '\t': case '\n': {
-      return charTypes::DEL;
+      return CharTypes::DEL;
     }
     default: {
-      return charTypes::ERR;
+      return CharTypes::ERR;
     }
   }
 }
