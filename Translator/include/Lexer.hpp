@@ -26,12 +26,10 @@ public:
     STR_LIT,
     CH_LIT,
     // operators
-    ADD_OP,
-    MUL_OP,
-    LGC_OP,
-    BIT_OP,
     ASGN_OP,
-    INC_OP,
+    BIN_OP,
+    TER_OP,
+    UN_OP,
     // delimiters
     DEL,
     // punctuation symbols

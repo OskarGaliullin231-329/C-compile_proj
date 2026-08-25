@@ -1,9 +1,6 @@
 #include "../include/Lexer.hpp"
 
 #include <array>
-
-#include <iostream>
-
 #include <set>
 #include <string>
 
@@ -42,6 +39,7 @@ Lexer::Token Lexer::currToken() {
         break;
       }
       case CharTypes::DEL: {
+        _curr_line += (sym == '\n');
         _token._str = _remains.substr(0, 1);
         _token._tok_tp = TokenType::DEL;
         break;
@@ -242,11 +240,25 @@ Lexer::Token Lexer::errSymLitToken(Token& token, size_t index) {
 }
 
 Lexer::Token Lexer::oper()  {
-  Token result {
-    ._str = _remains,
-    ._tok_tp = TokenType::ADD_OP
-  };
-  // TODO: implement logic
+  Token result { ._str = _remains.substr(0, 3) };
+  std::set<std::string_view> un_opers = {"!", "~", "++", "--"};
+  std::set<std::string_view> ter_opers = {"?"};
+  std::set<std::string_view> bin_opers = {"+", "-", "*", "/", "%", "&&", "||", "&", "|", "^", "<<", ">>", ".", "->", "<", ">", "<=", ">=", "==", "!="};
+  std::set<std::string_view> asgn_opers = {"=", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>="};
+  // if (un_opers.find(result._str) != un_opers.end()) { result._tok_tp = TokenType::UN_OP; }
+  // else if (ter_opers.find(result._str) != ter_opers.end()) { result._tok_tp = TokenType::TER_OP; }
+  // else if (bin_opers.find(result._str) != bin_opers.end()) { result._tok_tp = TokenType::BIN_OP; }
+  if (asgn_opers.find(result._str) != asgn_opers.end()) { result._tok_tp = TokenType::ASGN_OP; }
+  else { result._str.remove_suffix(1); }
+  if (un_opers.find(result._str) != un_opers.end()) { result._tok_tp = TokenType::UN_OP; }
+  // else if (ter_opers.find(result._str) != ter_opers.end()) { result._tok_tp = TokenType::TER_OP; }
+  else if (bin_opers.find(result._str) != bin_opers.end()) { result._tok_tp = TokenType::BIN_OP; }
+  else if (asgn_opers.find(result._str) != asgn_opers.end()) { result._tok_tp = TokenType::ASGN_OP; }
+  else { result._str.remove_suffix(1); }
+  if (un_opers.find(result._str) != un_opers.end()) { result._tok_tp = TokenType::UN_OP; }
+  else if (ter_opers.find(result._str) != ter_opers.end()) { result._tok_tp = TokenType::TER_OP; }
+  else if (bin_opers.find(result._str) != bin_opers.end()) { result._tok_tp = TokenType::BIN_OP; }
+  else if (asgn_opers.find(result._str) != asgn_opers.end()) { result._tok_tp = TokenType::ASGN_OP; }
   return result;
 }
 
@@ -257,12 +269,11 @@ Lexer::Token Lexer::punc()  {
       result._tok_tp = TokenType::SC_PUNC;
       break;
     }
-    case ',': case ';': {
+    case ',': case ';': case ':': {
       result._tok_tp = TokenType::ST_PUNC;
       break;
     }
   }
-  // TODO: implement logic
   return result;
 }
 
@@ -284,12 +295,10 @@ std::string to_string(Lexer::TokenType type) {
     case Lexer::TokenType::FL_LIT:  { str = "FL_LIT";  break; }
     case Lexer::TokenType::STR_LIT: { str = "STR_LIT"; break; }
     case Lexer::TokenType::CH_LIT:  { str = "CH_LIT";  break; }
-    case Lexer::TokenType::ADD_OP:  { str = "ADD_OP";  break; }
-    case Lexer::TokenType::MUL_OP:  { str = "MUL_OP";  break; }
-    case Lexer::TokenType::LGC_OP:  { str = "LGC_OP";  break; }
-    case Lexer::TokenType::BIT_OP:  { str = "BIT_OP";  break; }
     case Lexer::TokenType::ASGN_OP: { str = "ASGN_OP"; break; }
-    case Lexer::TokenType::INC_OP:  { str = "INC_OP";  break; }
+    case Lexer::TokenType::BIN_OP:  { str = "BIN_OP";  break; }
+    case Lexer::TokenType::TER_OP:  { str = "TER_OP";  break; }
+    case Lexer::TokenType::UN_OP:   { str = "UN_OP";   break; }
     case Lexer::TokenType::DEL:     { str = "DEL";     break; }
     case Lexer::TokenType::SC_PUNC: { str = "SC_PUNC"; break; }
     case Lexer::TokenType::ST_PUNC: { str = "ST_PUNC"; break; }
