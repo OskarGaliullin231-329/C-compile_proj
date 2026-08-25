@@ -49,28 +49,28 @@ public:
   Lexer(Lexer&&) = delete;
 
 public:
-  Token currToken();
-  bool advance();
-  uint32_t currLine() { return _curr_line; }
+  Token currToken() noexcept;
+  bool advance() noexcept;
+  uint32_t currLine() const noexcept { return _curr_line; }
 
-#if DEBUG
-public:
-#else
+// #if DEBUG
+// public:
+// #else
 private:
-#endif
+// #endif
   // first order utility methods
-  Token word();
-  Token numLit();
-  Token symLit();
-  Token oper();
-  Token punc();
+  Token word() noexcept;
+  Token numLit() noexcept;
+  Token symLit() const noexcept;
+  Token oper() const noexcept;
+  Token punc() const noexcept;
   // second order utility methods
-  Token errSymToken(Token&, size_t);
-  Token toKeyWord(Token&);
-  Token strLitToken(Token&);
-  Token charLitToken(Token&);
+  Token errSymToken(Token&, size_t) const noexcept;
+  Token toKeyWord(Token&)  const noexcept;
+  Token strLitToken(Token&) const noexcept;
+  Token charLitToken(Token&) const noexcept;
   // third order utility methods
-  Token errSymLitToken(Token&, size_t);
+  Token errSymLitToken(Token&, size_t) const noexcept;
 
 private:
   std::string_view _buff;

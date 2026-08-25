@@ -13,7 +13,7 @@ Lexer::Lexer(const std::string_view& source_code) {
   _curr_line = 0;
 }
 
-Lexer::Token Lexer::currToken() {
+Lexer::Token Lexer::currToken() noexcept {
   if (_remains.empty()) { return { "", TokenType::ERR }; }
   if (_token._str.empty()) {
     char sym = _remains[0];
@@ -54,7 +54,7 @@ Lexer::Token Lexer::currToken() {
   return _token;
 }
 
-bool Lexer::advance() {
+bool Lexer::advance() noexcept {
   bool result = !(_remains.empty() || (_token._tok_tp == TokenType::ERR));
   if (result) {
     _remains.remove_prefix(_token._str.size());
@@ -63,7 +63,7 @@ bool Lexer::advance() {
   return result;
 }
 
-Lexer::Token Lexer::word() {
+Lexer::Token Lexer::word() noexcept {
   Token result {
     ._str = _remains,
     ._tok_tp = TokenType::ID
@@ -89,7 +89,7 @@ Lexer::Token Lexer::word() {
   return toKeyWord(result);
 }
 
-Lexer::Token Lexer::toKeyWord(Lexer::Token& tok) {
+Lexer::Token Lexer::toKeyWord(Lexer::Token& tok) const noexcept {
   const uint8_t num_types = 10;
   std::array<std::set<std::string_view>, num_types> kw_types;
   kw_types[0] = {"void", "int", "float", "double", "char"}; // TP_KEY
@@ -111,7 +111,7 @@ Lexer::Token Lexer::toKeyWord(Lexer::Token& tok) {
   return tok;
 }
 
-Lexer::Token Lexer::numLit() {
+Lexer::Token Lexer::numLit() noexcept {
   Token result {
     ._str = _remains,
     ._tok_tp = TokenType::INT_LIT
@@ -160,7 +160,7 @@ Lexer::Token Lexer::numLit() {
   return result;
 }
 
-Lexer::Token Lexer::errSymToken(Token& token, size_t index) {
+Lexer::Token Lexer::errSymToken(Token& token, size_t index) const noexcept {
   std::string err_msg = "Unsupported symbol: ";
   err_msg += _remains[index];
   err_msg += '.';
@@ -170,7 +170,7 @@ Lexer::Token Lexer::errSymToken(Token& token, size_t index) {
   return token;
 }
 
-Lexer::Token Lexer::symLit()  {
+Lexer::Token Lexer::symLit() const noexcept {
   Token result {
     ._str = _remains,
     ._tok_tp = TokenType::CH_LIT
@@ -182,7 +182,7 @@ Lexer::Token Lexer::symLit()  {
   return result;
 }
 
-Lexer::Token Lexer::charLitToken(Token& token) {
+Lexer::Token Lexer::charLitToken(Token& token) const noexcept {
   token._tok_tp = TokenType::CH_LIT;
   size_t rem_size = _remains.size();
   size_t tok_len = 0;
@@ -211,7 +211,7 @@ Lexer::Token Lexer::charLitToken(Token& token) {
   return token;
 }
 
-Lexer::Token Lexer::strLitToken(Token& token) {
+Lexer::Token Lexer::strLitToken(Token& token) const noexcept {
   token._tok_tp = TokenType::STR_LIT;
   size_t rem_size = _remains.size();
   size_t tok_len = 0;
@@ -232,14 +232,14 @@ Lexer::Token Lexer::strLitToken(Token& token) {
   return token;
 }
 
-Lexer::Token Lexer::errSymLitToken(Token& token, size_t index) {
+Lexer::Token Lexer::errSymLitToken(Token& token, size_t index) const noexcept {
   Logger<StdLogger>::getInstance().addEvent(Event(_curr_line, "Unexpected EOL in symbolic literal."));
   token._str.remove_suffix(_remains.size() - index);
   token._tok_tp = TokenType::ERR;
   return token;
 }
 
-Lexer::Token Lexer::oper()  {
+Lexer::Token Lexer::oper() const noexcept {
   Token result { ._str = _remains.substr(0, 3) };
   std::set<std::string_view> un_opers = {"!", "~", "++", "--"};
   std::set<std::string_view> ter_opers = {"?"};
@@ -262,7 +262,7 @@ Lexer::Token Lexer::oper()  {
   return result;
 }
 
-Lexer::Token Lexer::punc()  {
+Lexer::Token Lexer::punc() const noexcept {
   Token result { ._str = _remains.substr(0, 1), };
   switch(_remains[0]) {
     case '{': case '}': case '(': case ')': {
