@@ -109,6 +109,10 @@ bool Preproc::processLine(const std::string& line, std::string_view& clear_line)
 
 bool Preproc::process(const std::string& file_name) {
   std::fstream file(file_name);
+  if (!file.good()) {
+    Logger::getInstance().addEvent(Event(_curr_line, "No such file."));
+    return false;
+  }
   bool result = true;
   std::string_view clear_line;
   for (std::string line; std::getline(file, line) && result; _curr_line++) {
