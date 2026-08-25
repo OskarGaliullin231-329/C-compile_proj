@@ -251,10 +251,17 @@ Lexer::Token Lexer::oper()  {
 }
 
 Lexer::Token Lexer::punc()  {
-  Token result {
-    ._str = _remains,
-    ._tok_tp = TokenType::SC_PUNC
-  };
+  Token result { ._str = _remains.substr(0, 1), };
+  switch(_remains[0]) {
+    case '{': case '}': case '(': case ')': {
+      result._tok_tp = TokenType::SC_PUNC;
+      break;
+    }
+    case ',': case ';': {
+      result._tok_tp = TokenType::ST_PUNC;
+      break;
+    }
+  }
   // TODO: implement logic
   return result;
 }
@@ -282,7 +289,7 @@ std::string to_string(Lexer::TokenType type) {
     case Lexer::TokenType::LGC_OP:  { str = "LGC_OP";  break; }
     case Lexer::TokenType::BIT_OP:  { str = "BIT_OP";  break; }
     case Lexer::TokenType::ASGN_OP: { str = "ASGN_OP"; break; }
-    case Lexer::TokenType::INC_OP:  { str = "INC_OP"; break; }
+    case Lexer::TokenType::INC_OP:  { str = "INC_OP";  break; }
     case Lexer::TokenType::DEL:     { str = "DEL";     break; }
     case Lexer::TokenType::SC_PUNC: { str = "SC_PUNC"; break; }
     case Lexer::TokenType::ST_PUNC: { str = "ST_PUNC"; break; }
