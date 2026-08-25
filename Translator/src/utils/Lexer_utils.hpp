@@ -13,7 +13,7 @@ enum class CharTypes : uint8_t {
   ERR
 };
 
-CharTypes type(char c) {
+CharTypes char_type(char c) {
   switch (c) {
     case 'a': case 'b': case 'c': case 'd': case 'e': case 'f': case 'g': case 'h': case 'i': case 'j':
     case 'k': case 'l': case 'm': case 'n': case 'o': case 'p': case 'q': case 'r': case 's': case 't':

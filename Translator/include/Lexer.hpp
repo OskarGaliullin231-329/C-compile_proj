@@ -31,6 +31,7 @@ public:
     LGC_OP,
     BIT_OP,
     ASGN_OP,
+    INC_OP,
     // delimiters
     DEL,
     // punctuation symbols
@@ -52,18 +53,26 @@ public:
 public:
   Token currToken();
   bool advance();
+  uint32_t currLine() { return _curr_line; }
 
 #if DEBUG
 public:
 #else
 private:
 #endif
+  // first order utility methods
   Token word();
   Token numLit();
   Token symLit();
   Token oper();
   Token punc();
+  // second order utility methods
+  Token errSymToken(Token&, size_t);
   Token toKeyWord(Token&);
+  Token strLitToken(Token&);
+  Token charLitToken(Token&);
+  // third order utility methods
+  Token errSymLitToken(Token&, size_t);
 
 private:
   std::string_view _buff;
