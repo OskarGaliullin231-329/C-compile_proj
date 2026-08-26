@@ -44,7 +44,7 @@ public:
   };
 
 public:
-  Lexer(const std::string_view&);
+  Lexer() = default;
   Lexer(const Lexer&) = delete;
   Lexer(Lexer&&) = delete;
 
@@ -52,6 +52,8 @@ public:
   Token currToken() noexcept;
   bool advance() noexcept;
   uint32_t currLine() const noexcept { return _curr_line; }
+
+  void operator()(const std::string_view&);
 
 // #if DEBUG
 // public:

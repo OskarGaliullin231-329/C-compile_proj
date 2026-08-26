@@ -7,12 +7,6 @@
 #include "utils/Lexer_utils.hpp"
 #include "../../Logger/include/StdLogger.hpp"
 
-Lexer::Lexer(const std::string_view& source_code) {
-  _buff = source_code;
-  _remains = _buff;
-  _curr_line = 0;
-}
-
 Lexer::Token Lexer::currToken() noexcept {
   if (_remains.empty()) { return { "", TokenType::ERR }; }
   if (_token._str.empty()) {
@@ -61,6 +55,12 @@ bool Lexer::advance() noexcept {
     _token._str.remove_prefix(_token._str.size());
   }
   return result;
+}
+
+void Lexer::operator()(const std::string_view& source_code) {
+  _buff = source_code;
+  _remains = _buff;
+  _curr_line = 0;
 }
 
 Lexer::Token Lexer::word() noexcept {
