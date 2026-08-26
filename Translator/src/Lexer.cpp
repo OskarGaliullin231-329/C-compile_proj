@@ -245,20 +245,20 @@ Lexer::Token Lexer::oper() const noexcept {
   std::set<std::string_view> ter_opers = {"?"};
   std::set<std::string_view> bin_opers = {"+", "-", "*", "/", "%", "&&", "||", "&", "|", "^", "<<", ">>", ".", "->", "<", ">", "<=", ">=", "==", "!="};
   std::set<std::string_view> asgn_opers = {"=", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>="};
-  // if (un_opers.find(result._str) != un_opers.end()) { result._tok_tp = TokenType::UN_OP; }
-  // else if (ter_opers.find(result._str) != ter_opers.end()) { result._tok_tp = TokenType::TER_OP; }
-  // else if (bin_opers.find(result._str) != bin_opers.end()) { result._tok_tp = TokenType::BIN_OP; }
-  if (asgn_opers.find(result._str) != asgn_opers.end()) { result._tok_tp = TokenType::ASGN_OP; }
+  if (un_opers.find(result._str) != un_opers.end()) { result._tok_tp = TokenType::UN_OP; return result; }
+  else if (ter_opers.find(result._str) != ter_opers.end()) { result._tok_tp = TokenType::TER_OP; return result; }
+  else if (bin_opers.find(result._str) != bin_opers.end()) { result._tok_tp = TokenType::BIN_OP; return result; }
+  if (asgn_opers.find(result._str) != asgn_opers.end()) { result._tok_tp = TokenType::ASGN_OP; return result; }
   else { result._str.remove_suffix(1); }
-  if (un_opers.find(result._str) != un_opers.end()) { result._tok_tp = TokenType::UN_OP; }
-  // else if (ter_opers.find(result._str) != ter_opers.end()) { result._tok_tp = TokenType::TER_OP; }
-  else if (bin_opers.find(result._str) != bin_opers.end()) { result._tok_tp = TokenType::BIN_OP; }
-  else if (asgn_opers.find(result._str) != asgn_opers.end()) { result._tok_tp = TokenType::ASGN_OP; }
+  if (un_opers.find(result._str) != un_opers.end()) { result._tok_tp = TokenType::UN_OP; return result; }
+  else if (ter_opers.find(result._str) != ter_opers.end()) { result._tok_tp = TokenType::TER_OP; return result; }
+  else if (bin_opers.find(result._str) != bin_opers.end()) { result._tok_tp = TokenType::BIN_OP; return result; }
+  else if (asgn_opers.find(result._str) != asgn_opers.end()) { result._tok_tp = TokenType::ASGN_OP; return result; }
   else { result._str.remove_suffix(1); }
-  if (un_opers.find(result._str) != un_opers.end()) { result._tok_tp = TokenType::UN_OP; }
-  else if (ter_opers.find(result._str) != ter_opers.end()) { result._tok_tp = TokenType::TER_OP; }
-  else if (bin_opers.find(result._str) != bin_opers.end()) { result._tok_tp = TokenType::BIN_OP; }
-  else if (asgn_opers.find(result._str) != asgn_opers.end()) { result._tok_tp = TokenType::ASGN_OP; }
+  if (un_opers.find(result._str) != un_opers.end()) { result._tok_tp = TokenType::UN_OP; return result; }
+  else if (ter_opers.find(result._str) != ter_opers.end()) { result._tok_tp = TokenType::TER_OP; return result; }
+  else if (bin_opers.find(result._str) != bin_opers.end()) { result._tok_tp = TokenType::BIN_OP; return result; }
+  else if (asgn_opers.find(result._str) != asgn_opers.end()) { result._tok_tp = TokenType::ASGN_OP; return result; }
   return result;
 }
 
