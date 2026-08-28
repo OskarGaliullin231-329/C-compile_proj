@@ -30,7 +30,8 @@ int main(int args_num, char** args_names) {
   }
   cout << "--- Text has been preprocessed successfully.\n";
   cout << "--- Tokens:\n";
-  Lexer lexer = Lexer(prep.result());
+  Lexer lexer;
+  lexer(prep.result());
   size_t counter = 1;
   while (lexer.advance()) {
     cout << counter++ << ". " << to_string(lexer.currToken()) << " at line " << lexer.currLine() << "\n";
