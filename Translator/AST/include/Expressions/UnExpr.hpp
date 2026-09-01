@@ -9,6 +9,8 @@ public:
   UnExpr(const UnExpr&) = default;
   UnExpr(const Token&, ExprPtr);
 
+  TypeId type() override;
+
 private:
   Token _operator;
   ExprPtr _operand;

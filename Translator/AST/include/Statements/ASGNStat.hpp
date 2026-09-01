@@ -5,6 +5,8 @@
 
 class ASGNStat final : public Statement {
 public:
+  TypeId type() override;
+
 private:
   Token _l_operand;
   Token _operator;

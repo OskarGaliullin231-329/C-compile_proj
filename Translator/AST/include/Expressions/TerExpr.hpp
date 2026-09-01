@@ -8,6 +8,8 @@ public:
   TerExpr() = default;
   TerExpr(const TerExpr&) = default;
 
+  TypeId type() override;
+
 private:
   ExprPtr _condition;
   ExprPtr _pos_res;

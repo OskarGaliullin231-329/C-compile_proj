@@ -3,19 +3,14 @@
 
 #include <vector>
 
+#include "ASTNode.hpp"
 #include "Statements/Statement.hpp"
 
-class CodeBlock final {
-public:
+struct CodeBlock {
   using StatPtr = std::shared_ptr<Statement>;
   using Iterator = std::vector<StatPtr>::iterator;
 
-  void addStatement(const Statement&);
-  Iterator firstStatIter();
-  Iterator endStatIter();
-
-private:
-  std::vector<StatPtr> _statements;
+  std::vector<ASTNode> _statements;
 };
 
 #endif // CODEBLOCK_HPP_

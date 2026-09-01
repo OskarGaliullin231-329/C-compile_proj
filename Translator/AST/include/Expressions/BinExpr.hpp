@@ -9,16 +9,27 @@ public:
   BinExpr(const BinExpr&) = default;
   BinExpr(const ExprPtr, const ExprPtr, const Token&);
 
+  TypeId type() override;
+
 protected:
   ExprPtr _l_operand;
   ExprPtr _r_operand;
   Token _operator;
 };
 
-class BitExpr final : public BinExpr {};
+class BitExpr final : public BinExpr {
+public:
+  TypeId type() override;
+};
 
-class ArithExpr final : public BinExpr {};
+class ArithExpr final : public BinExpr {
+public:
+  TypeId type() override;
+};
 
-class LgcExpr final : public BinExpr {};
+class LgcExpr final : public BinExpr {
+public:
+  TypeId type() override;
+};
 
 #endif // BINEXPR_HPP_

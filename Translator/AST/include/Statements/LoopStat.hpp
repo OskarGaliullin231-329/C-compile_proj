@@ -1,14 +1,32 @@
 #ifndef LOOPSTAT_HPP_
 #define LOOPSTAT_HPP_
 
+#include "../CodeBlock.hpp"
 #include "Statement.hpp"
 
-class LoopStat : public Statement {};
+class LoopStat : public Statement {
+public:
+  using CBPtr = std::shared_ptr<CodeBlock>;
 
-class ForStat final : public LoopStat {};
+  TypeId type() override;
 
-class WhileStat final : public LoopStat {};
+protected:
+  CBPtr _code_block;
+};
 
-class DoWhileStat final : public LoopStat {};
+class ForStat final : public LoopStat {
+public:
+  TypeId type() override;
+};
+
+class WhileStat final : public LoopStat {
+public:
+  TypeId type() override;
+};
+
+class DoWhileStat final : public LoopStat {
+public:
+  TypeId type() override;
+};
 
 #endif // LOOPSTAT_HPP_

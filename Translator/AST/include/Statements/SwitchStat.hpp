@@ -3,12 +3,24 @@
 
 #include "Statement.hpp"
 
-class SwitchStat : public Statement {};
+class SwitchStat : public Statement {
+public:
+  TypeId type() override;
+};
 
-class SwCondStat final : public SwitchStat {};
+class SwCondStat final : public SwitchStat {
+public:
+  TypeId type() override;
+};
 
-class CaseStat final : public SwitchStat {};
+class CaseStat final : public SwitchStat {
+public:
+  TypeId type() override;
+};
 
-class DefaultStat final : public SwitchStat {};
+class DefaultStat final : public SwitchStat {
+public:
+  TypeId type() override;
+};
 
 #endif // SWITCHSTAT_HPP_

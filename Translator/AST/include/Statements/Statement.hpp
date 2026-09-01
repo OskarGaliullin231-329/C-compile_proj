@@ -12,6 +12,8 @@ public:
   using Expr = Expression;
   using ExprPtr = std::shared_ptr<Expression>;
 
+  TypeId type() override;
+
 private:
 };
 

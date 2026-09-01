@@ -8,6 +8,8 @@ class Expression : public ASTNode {
 public:
   using ExprPtr = std::shared_ptr<Expression>;
   using Expr = Expression;
+
+  TypeId type() override;
 };
 
 #endif // EXPREESSION_HPP_

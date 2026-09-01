@@ -5,6 +5,8 @@
 
 class TypeNode final : public ASTNode {
 public:
+  TypeId type() override;
+
 private:
   Token _type;      // TP_KEY or TW_KEY
   Token _tp_spec;   // TS_KEY
