@@ -11,7 +11,7 @@ using namespace std;
 
 // to compile use
 // clang++ CmdArgParser/src/CmdArgParser.cpp Logger/src/StdLogger.cpp Preproc/src/Preproc.cpp Translator/src/Lexer.cpp showcases/lexer_sc.cpp -o bin/lexer
-// command
+// command from root of the project
 
 int main(int args_num, char** args_names) {
   CmdArgParser arg_parser;
@@ -30,7 +30,8 @@ int main(int args_num, char** args_names) {
   }
   cout << "--- Text has been preprocessed successfully.\n";
   cout << "--- Tokens:\n";
-  Lexer lexer = Lexer(prep.result());
+  Lexer lexer;
+  lexer(prep.result());
   size_t counter = 1;
   while (lexer.advance()) {
     cout << counter++ << ". " << to_string(lexer.currToken()) << " at line " << lexer.currLine() << "\n";

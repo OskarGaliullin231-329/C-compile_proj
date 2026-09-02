@@ -7,6 +7,10 @@
 
 using namespace std;
 
+// to compile use
+// clang++ Logger/src/StdLogger.cpp Translator/src/Lexer.cpp tests/Lexer_test.cpp -o bin/lexer_test
+// command from root of the project
+
 int main(int args_num, char** args_names) {
   string text;
   while (true) {

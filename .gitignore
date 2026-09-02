@@ -2,6 +2,7 @@
 bin/
 .zed/
 .vscode/
+build/
 
 # standalone files
 test.cpp

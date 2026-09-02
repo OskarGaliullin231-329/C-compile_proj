@@ -265,7 +265,7 @@ Lexer::Token Lexer::oper() const noexcept {
 Lexer::Token Lexer::punc() const noexcept {
   Token result { ._str = _remains.substr(0, 1), };
   switch(_remains[0]) {
-    case '{': case '}': case '(': case ')': {
+    case '{': case '}': case '(': case ')': case '[': case ']': {
       result._tok_tp = TokenType::SC_PUNC;
       break;
     }
