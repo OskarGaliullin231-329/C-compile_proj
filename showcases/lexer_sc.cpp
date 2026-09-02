@@ -11,7 +11,7 @@ using namespace std;
 
 // to compile use
 // clang++ CmdArgParser/src/CmdArgParser.cpp Logger/src/StdLogger.cpp Preproc/src/Preproc.cpp Translator/src/Lexer.cpp showcases/lexer_sc.cpp -o bin/lexer
-// command
+// command from root of the project
 
 int main(int args_num, char** args_names) {
   CmdArgParser arg_parser;

@@ -35,7 +35,7 @@ CharTypes char_type(char c) {
     case '.': {
       return CharTypes::OPER;
     }
-    case '{': case '}': case '(': case ')':
+    case '{': case '}': case '(': case ')': case '[': case ']':
     case ',': case ';': case ':': {
       return CharTypes::PUNC;
     }
