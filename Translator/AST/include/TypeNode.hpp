@@ -3,6 +3,8 @@
 
 #include "ASTNode.hpp"
 
+// <TS_KEY || VS_KEY || NONE> <TS_KEY || VS_KEY || NONE> <TP_KEY || TW_KEY>
+// <TS_KEY || VS_KEY || NONE> <TS_KEY || VS_KEY || NONE> <enum || struct>
 class TypeNode final : public ASTNode {
 public:
   TypeId type() override;

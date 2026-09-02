@@ -9,6 +9,17 @@ struct SomeStruct {
   int id;
 };
 
+enum Enum {
+  variant1,
+  variant2,
+};
+
+// struct SomeStruct construct() {
+//   struct SomeStruct result;
+//   result.id = 8;
+//   return result;
+// }
+
 // entry point of the program
 int main() {
   /*
@@ -28,6 +39,8 @@ int main() {
 
   struct SomeStruct s_s;
   s_s.id = 0;
+
+  enum Enum var;
 
   return 0;
 }

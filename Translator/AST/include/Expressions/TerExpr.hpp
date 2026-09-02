@@ -3,6 +3,7 @@
 
 #include "Expression.hpp"
 
+// <expr>:_condition ? <expr>:_pos_res : <expr>:_neg_res
 class TerExpr : public Expression {
 public:
   TerExpr() = default;

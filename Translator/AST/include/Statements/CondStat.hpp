@@ -14,16 +14,19 @@ protected:
   CBPtr _code_block;
 };
 
+// if (<expr>) <CodeBlock>
 class IfStat final : public CondStat {
 public:
   TypeId type() override;
 };
 
+// else if (<expr>) <CodeBlock>
 class ElseIfStat final : public CondStat {
 public:
   TypeId type() override;
 };
 
+// else <CodeBlock>
 class ElseStat final : public CondStat {
 public:
   TypeId type() override;

@@ -6,6 +6,7 @@
 #include "ASTNode.hpp"
 #include "Statements/Statement.hpp"
 
+// { <Statement || CodeBlock>, ... }
 struct CodeBlock {
   using StatPtr = std::shared_ptr<Statement>;
   using Iterator = std::vector<StatPtr>::iterator;

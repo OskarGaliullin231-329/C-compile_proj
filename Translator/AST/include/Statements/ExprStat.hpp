@@ -3,6 +3,7 @@
 
 #include "Statement.hpp"
 
+// <expr>;
 class ExprStat final : public Statement {
 public:
   TypeId type() override;

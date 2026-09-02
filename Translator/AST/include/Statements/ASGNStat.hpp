@@ -3,6 +3,7 @@
 
 #include "Statement.hpp"
 
+// <ID> <ASGN_OP> <expr>;
 class ASGNStat final : public Statement {
 public:
   TypeId type() override;
