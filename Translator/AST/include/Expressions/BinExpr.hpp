@@ -3,7 +3,7 @@
 
 #include "Expression.hpp"
 
-// <expr>:_l_operand <BIN_OP>:_operator <expr>:_r_operand
+// <expr> <BIN_OP> <expr>
 class BinExpr : public Expression {
 public:
   BinExpr() = default;
@@ -18,20 +18,26 @@ protected:
   Token _operator;
 };
 
-// <expr>:_l_operand <BIN_OP -> BitOp>:_operator <expr>:_r_operand
+// <expr> <BIN_OP -> BitOp> <expr>
 class BitExpr final : public BinExpr {
 public:
   TypeId type() override;
 };
 
-// <expr>:_l_operand <BIN_OP -> ArithOp>:_operator <expr>:_r_operand
+// <expr> <BIN_OP -> ArithOp> <expr>
 class ArithExpr final : public BinExpr {
 public:
   TypeId type() override;
 };
 
-// <expr>:_l_operand <BIN_OP -> LogicOp>:_operator <expr>:_r_operand
+// <expr> <BIN_OP -> LogicOp> <expr>
 class LgcExpr final : public BinExpr {
+public:
+  TypeId type() override;
+};
+
+// <ID> <ASGN_OP> <expr>
+class ASGNExpr : public BinExpr {
 public:
   TypeId type() override;
 };

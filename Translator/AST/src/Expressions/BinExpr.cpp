@@ -9,3 +9,5 @@ TypeId BitExpr::type() { return BinExpr::type() * _num_sys_base + 1; }
 TypeId ArithExpr::type() { return BinExpr::type() * _num_sys_base + 2; }
 
 TypeId LgcExpr::type() { return BinExpr::type() * _num_sys_base + 3; }
+
+TypeId ASGNExpr::type() { return BinExpr::type() * _num_sys_base + 4; }
