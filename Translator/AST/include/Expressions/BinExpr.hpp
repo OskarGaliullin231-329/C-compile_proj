@@ -64,6 +64,7 @@ public:
 };
 
 class StructExpr : public BinExpr {
+public:
   StructExpr() = default;
   StructExpr(const StructExpr&) = default;
   StructExpr(const ExprPtr, const ExprPtr, const Token&);
