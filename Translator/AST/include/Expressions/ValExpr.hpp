@@ -13,7 +13,7 @@ public:
   ValExpr(const Token&);
 
   virtual TypeId type() override;
-  virtual Token getToken();
+  Token& token();
 
 protected:
   Token _val_token;
@@ -22,26 +22,44 @@ protected:
 // <ID>
 class IDExpr final : public ValExpr {
 public:
+  IDExpr(const Token&);
+
   TypeId type() override;
-  Token getToken() override;
 };
 
 // <INT_LIT || FL_LIT || CH_LIT || STR_LIT>
 class LITExpr final : public ValExpr {
 public:
+  LITExpr(const Token&);
+
   TypeId type() override;
-  Token getToken() override;
 };
 
 // <ID>()
 // <ID>(<expr>, ...)
+// sizeof(<expr>)
+// sizeof(<TypeNode>)
 class FuncExpr final : public ValExpr {
 public:
   using FuncParams = std::vector<ExprPtr>;
 
+  FuncExpr(const Token&);
+
   TypeId type() override;
-  Token getToken() override;
+  void addParam(ExprPtr);
+
 private:
+  FuncParams _params;
+};
+
+class ArrExpr : public ValExpr {
+public:
+  ArrExpr(const Token&);
+
+  TypeId type() override;
+
+private:
+  ExprPtr _index_expr;
 };
 
 #endif // VALEXPR_HPP_
