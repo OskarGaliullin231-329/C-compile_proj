@@ -2,7 +2,7 @@
 
 typedef ASTNode::TypeId TypeId;
 
-TypeId SwitchStat::type() { return Statement::type() + 6; }
+TypeId SwitchStat::type() { return Statement::type() + 5; }
 
 TypeId SwCondStat::type() { return SwitchStat::type() + 1; }
 

@@ -2,7 +2,7 @@
 
 typedef ASTNode::TypeId TypeId;
 
-TypeId LoopStat::type() { return Statement::type() + 5; }
+TypeId LoopStat::type() { return Statement::type() + 4; }
 
 TypeId ForStat::type() { return LoopStat::type() + 1; }
 

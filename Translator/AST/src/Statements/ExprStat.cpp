@@ -2,4 +2,4 @@
 
 typedef ASTNode::TypeId TypeId;
 
-TypeId ExprStat::type() { return Statement::type() + 4; }
+TypeId ExprStat::type() { return Statement::type() + 3; }
