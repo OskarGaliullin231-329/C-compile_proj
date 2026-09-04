@@ -13,10 +13,25 @@ public:
 
   TypeId type() override;
 
+  ExprPtr& leftOperand();
+  ExprPtr& rightOperand();
+  const Token& oper() const;
+
 protected:
   ExprPtr _l_operand;
   ExprPtr _r_operand;
   Token _operator;
+};
+
+// <ValExpr> <BIN_OP -> STRUCT_OP> <ID>
+class StructExpr : public BinExpr {
+public:
+  StructExpr() = default;
+  StructExpr(const StructExpr&) = default;
+  StructExpr(const ExprPtr, const ExprPtr, const Token&);
+  ~StructExpr() = default;
+
+  TypeId type() override;
 };
 
 // <expr> <BIN_OP -> BitOp> <expr>
@@ -59,16 +74,6 @@ public:
   ASGNExpr(const ASGNExpr&) = default;
   ASGNExpr(const ExprPtr, const ExprPtr, const Token&);
   ~ASGNExpr() = default;
-
-  TypeId type() override;
-};
-
-class StructExpr : public BinExpr {
-public:
-  StructExpr() = default;
-  StructExpr(const StructExpr&) = default;
-  StructExpr(const ExprPtr, const ExprPtr, const Token&);
-  ~StructExpr() = default;
 
   TypeId type() override;
 };
