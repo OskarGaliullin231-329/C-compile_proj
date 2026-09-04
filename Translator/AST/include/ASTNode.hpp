@@ -15,6 +15,8 @@ public:
   using TokenType = Lexer::TokenType;
   using TypeId = uint16_t;
 
+  virtual ~ASTNode() = default;
+
   /*
    * Hexadecimal codes for types;
    * Global ID - unique identificator of type.
