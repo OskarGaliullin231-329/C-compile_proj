@@ -4,10 +4,12 @@
 #include <memory>
 
 #include "../../include/Lexer.hpp"
+#include "../../../Logger/include/StdLogger.hpp"
 
 // this is an interface for other types of nodes
 class ASTNode {
 public:
+  using Logger = Logger<StdLogger>;
   using NodePtr = std::shared_ptr<ASTNode>;
   using Token = Lexer::Token;
   using TokenType = Lexer::TokenType;
