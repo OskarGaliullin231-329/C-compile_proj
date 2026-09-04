@@ -27,6 +27,7 @@ public:
 
 private:
   TpNdPtr _type_node;
+  ExprPtr _val;
 };
 
 // <TypeNode> <ID>[<LITExpr || NONE>];
@@ -52,6 +53,7 @@ public:
 private:
   FuncParams _params;
   TpNdPtr _type_node;
+  CBPtr _code_block;
 };
 
 // <struct || enum || union> <ID> <CodeBlock>;
