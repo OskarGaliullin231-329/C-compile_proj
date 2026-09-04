@@ -5,7 +5,7 @@
 
 #include "ASTNode.hpp"
 
-// <TS_KEY || VS_KEY || NONE> ... <TP_KEY || TW_KEY || enum || struct || ID> <* || NONE>
+// <TS_KEY || VS_KEY || NONE> ... <(enum || struct || union <ID>) || TP_KEY || TW_KEY> <* || NONE>
 class TypeNode final : public ASTNode {
 public:
   using Props = std::vector<Token>;
@@ -22,8 +22,8 @@ public:
   void makePtr();
 
 private:
-  Props _props;
-  Token _type;      // TP_KEY, TW_KEY, ID, struct or enum
+  Props _props;     // if 'struct', 'enum' or 'union' occures, then stop and add them to _props
+  Token _type;      // TP_KEY, TW_KEY, ID
   bool _is_ptr = false;
 };
 

@@ -13,6 +13,9 @@ public:
   using TpNdPtr = std::shared_ptr<TypeNode>;
 
   TypeId type() override;
+
+protected:
+  Token _id;
 };
 
 // <TypeNode> <ID>;           // in CodeBlock
@@ -24,7 +27,15 @@ public:
 
 private:
   TpNdPtr _type_node;
-  Token _id;
+};
+
+// <TypeNode> <ID>[<LITExpr || NONE>];
+class ArrDeclStat final : public DeclStat {
+public:
+  TypeId type() override;
+
+private:
+  TpNdPtr _type_node;
 };
 
 // <TypeNode> <ID>() <CodeBlock>
@@ -40,7 +51,6 @@ public:
 
 private:
   FuncParams _params;
-  Token _id;
   TpNdPtr _type_node;
 };
 
@@ -51,14 +61,16 @@ public:
 
 private:
   Token _def_type; // struct || enum || union
-  Token _id;
   CBPtr _code_block;
 };
 
-// typedef <Typenode> <ID>;
+// typedef <TypeNode> <ID>;
 class TypedefDeclStat final : public DeclStat {
 public:
   TypeId type() override;
+
+private:
+  TpNdPtr _type_node;
 };
 
 #endif // DECLSTAT_HPP_

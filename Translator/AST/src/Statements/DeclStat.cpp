@@ -2,7 +2,7 @@
 
 typedef ASTNode::TypeId TypeId;
 
-TypeId DeclStat::type() { return Statement::type() * _num_sys_base + 3; }
+TypeId DeclStat::type() { return Statement::type() * _num_sys_base + 2; }
 
 TypeId VarDeclStat::type() { return DeclStat::type() * _num_sys_base + 1; }
 
