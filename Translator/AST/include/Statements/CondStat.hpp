@@ -18,12 +18,18 @@ protected:
 class IfStat final : public CondStat {
 public:
   TypeId type() override;
+
+private:
+  ExprPtr _cond;
 };
 
 // else if (<expr>) <CodeBlock>
 class ElseIfStat final : public CondStat {
 public:
   TypeId type() override;
+
+private:
+  ExprPtr _cond;
 };
 
 // else <CodeBlock>

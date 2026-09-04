@@ -2,7 +2,7 @@
 
 typedef ASTNode::TypeId TypeId;
 
-TypeId CondStat::type() { return Statement::type() * _num_sys_base + 2; }
+TypeId CondStat::type() { return Statement::type() * _num_sys_base + 1; }
 
 TypeId IfStat::type() { return CondStat::type() * _num_sys_base + 1; }
 
