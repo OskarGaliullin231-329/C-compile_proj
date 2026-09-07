@@ -52,6 +52,17 @@ bool Lexer::advance() noexcept {
   bool result = !(_remains.empty() || (_token._tok_tp == TokenType::ERR));
   if (result) {
     _remains.remove_prefix(_token._str.size());
+    while (!_remains.empty()) {
+      switch(char_type(_remains[0])) {
+        case CharTypes::DEL: {
+          _curr_line += (_remains[0] == '\n');
+          _remains.remove_prefix(1);
+          break;
+        }
+        default: { goto delim_loop_end; }
+      }
+    }
+    delim_loop_end:
     _token._str.remove_prefix(_token._str.size());
   }
   return result;
