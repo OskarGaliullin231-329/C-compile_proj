@@ -1,12 +1,17 @@
-#ifndef EXPRPARSER_HPP_
-#define EXPRPARSER_HPP_
+#ifndef EXPRFACTORY_HPP_
+#define EXPRFACTORY_HPP_
 
 #include "../AST/include/Expressions/Expression.hpp"
+#include "NodeFactory.hpp"
 
-class ExprParser {
+class ExprFactory final : public NodeFactory<ExprFactory> {
 public:
-  using LexerPtr = std::shared_ptr<Lexer>;
   using ExprPtr = std::shared_ptr<Expression>;
+
+  ExprFactory() = default;
+  ExprFactory(const ExprFactory&) = default;
+  ExprFactory(ExprFactory&&) = default;
+  ~ExprFactory() = default;
 
   ExprPtr create();
 
@@ -29,7 +34,9 @@ private:
   ExprPtr createArrExpr();
 
 private:
-  LexerPtr _lexer;
+  // no explicit usage of Lexer::advance()
+  ExprPtr handleValTok();
+  ExprPtr handleParenTok();
 };
 
-#endif // EXPRPARSER_HPP_
+#endif // EXPRFACTORY_HPP_

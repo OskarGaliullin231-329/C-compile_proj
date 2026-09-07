@@ -1,18 +1,18 @@
-#ifndef STATPARSER_HPP_
-#define STATPARSER_HPP_
+#ifndef STATFACTORY_HPP_
+#define STATFACTORY_HPP_
 
 #include "../AST/include/Statements/Statement.hpp"
 #include "Lexer.hpp"
 
-class StatParser {
+class StatFactory {
 public:
   using LexerPtr = std::shared_ptr<Lexer>;
   using StatPtr = std::shared_ptr<Statement>;
 
-  StatParser() = default;
-  StatParser(const StatParser&) = default;
-  StatParser(StatParser&&) = default;
-  ~StatParser() = default;
+  StatFactory() = default;
+  StatFactory(const StatFactory&) = default;
+  StatFactory(StatFactory&&) = default;
+  ~StatFactory() = default;
 
   StatPtr create();
 
@@ -51,4 +51,4 @@ private:
   LexerPtr _lexer;
 };
 
-#endif // STATPARSER_HPP_
+#endif // STATFACTORY_HPP_
