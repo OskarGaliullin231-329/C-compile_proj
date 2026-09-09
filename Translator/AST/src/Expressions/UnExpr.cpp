@@ -2,4 +2,4 @@
 
 typedef ASTNode::TypeId TypeId;
 
-TypeId UnExpr::type() { return Expression::type() * _num_sys_base + 2; }
+TypeId UnExpr::type() { return Expression::type() * _num_sys_base + 3; }

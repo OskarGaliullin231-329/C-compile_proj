@@ -3,7 +3,7 @@
 typedef ASTNode::TypeId TypeId;
 typedef Lexer::Token Token;
 
-TypeId ValExpr::type() { return Expression::type() * _num_sys_base + 1; }
+TypeId ValExpr::type() { return Expression::type() * _num_sys_base + 2; }
 
 Token& ValExpr::token() { return _val_token; }
 

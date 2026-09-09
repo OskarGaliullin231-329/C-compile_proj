@@ -4,7 +4,7 @@ typedef ASTNode::TypeId TypeId;
 typedef Expression::ExprPtr ExprPtr;
 typedef Lexer::Token Token;
 
-TypeId BinExpr::type() { return Expression::type() * _num_sys_base + 4; }
+TypeId BinExpr::type() { return Expression::type() * _num_sys_base + 5; }
 
 ExprPtr& BinExpr::leftOperand() { return _r_operand; }
 
