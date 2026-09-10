@@ -52,9 +52,10 @@ private:
   FuncParams _params;
 };
 
+// <ID || LIT>[<expr>]
 class ArrExpr : public ValExpr {
 public:
-  ArrExpr(const Token&);
+  ArrExpr(const Token&, ExprPtr);
 
   TypeId type() override;
 
