@@ -25,22 +25,11 @@ public:
   }
 
 protected:
-  bool passDelims() {
-    _curr_token = _lexer->currToken();
-    _next_token = _curr_token;
-    while (_lexer->advance()) {
-      switch(_lexer->currToken()._tok_tp) {
-        case TokenType::DEL: { break; }
-        case TokenType::ERR: {
-          _ok = false;
-          Logger::getInstance().addEvent(Event(_lexer->currLine(), "Incorrect token."));
-          goto loop_end;
-        } default: { goto loop_end; }
-      }
-      loop_end:
-      _next_token = _lexer->currToken();
-    }
-    return _ok;
+  bool advance() {
+    bool result = _lexer->advance();
+    _curr_token = _next_token;
+    _next_token = _lexer->currToken();
+    return result;
   }
 
 protected:
