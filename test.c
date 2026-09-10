@@ -1,8 +1,8 @@
 #include <stdio.h>
 #  define VAR 1
 #   if VAR
-void some_function() {
-  printf("some_function was called.\n");
+void printSomething() {
+  printf("'printSomething' was called.\n");
 }
 
 struct SomeStruct {
@@ -34,7 +34,7 @@ int main() {
   printf("%d", result==a+b);
 
   for (int i = 0; i < 10; i++) {
-    some_function();
+    printSomething();
   }
 
   struct SomeStruct s_s;
