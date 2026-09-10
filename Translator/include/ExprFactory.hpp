@@ -16,16 +16,7 @@ public:
   ExprPtr create();
 
 private:
-  ExprPtr createBinExpr();
-  ExprPtr createStructExpr();
-  ExprPtr createBitExpr();
-  ExprPtr createArithExpr();
-  ExprPtr createLgcExpr();
-  ExprPtr createASGNExpr();
-
-  ExprPtr createTerExpr();
-
-  ExprPtr createUnExpr();
+  ExprPtr createParenExpr();
 
   ExprPtr createValExpr();
   ExprPtr createIDExpr();
@@ -33,10 +24,20 @@ private:
   ExprPtr createFuncExpr();
   ExprPtr createArrExpr();
 
+  ExprPtr createUnExpr();
+
+  ExprPtr createTerExpr(ExprPtr);
+
+  ExprPtr createBinExpr(ExprPtr, const Token&);
+  ExprPtr createStructExpr();
+  ExprPtr createBitExpr();
+  ExprPtr createArithExpr();
+  ExprPtr createLgcExpr();
+  ExprPtr createASGNExpr();
+
 private:
-  // no explicit usage of Lexer::advance()
-  ExprPtr handleValTok();
-  ExprPtr handleParenTok();
+  // no explicit usage of NodeFactory::advance()
+  ExprPtr createValExprIDHandler();
 };
 
 #endif // EXPRFACTORY_HPP_
